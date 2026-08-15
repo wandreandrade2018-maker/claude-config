@@ -1,0 +1,47 @@
+# =============================================================================
+# SEGREDOS E CREDENCIAIS — NUNCA COMMITAR
+# =============================================================================
+.credentials.json
+.credentials.json.*
+.claude.json
+.claude.json.*
+*.key
+**/*.key
+*.pem
+.env
+.env.*
+!.env.example
+
+# Settings locais (podem conter segredos/env/tokens de MCP)
+settings.local.json
+.vscode/
+
+# =============================================================================
+# HISTÓRICO DE CONVERSAS — privado, não versionar
+# =============================================================================
+# transcripts de sessão inteiros (JSONL) e dumps de resultado de ferramentas
+projects/**/*.jsonl
+projects/**/tool-results/
+projects/**/*.output
+projects/**/*.tmp
+projects/**/scratchpad/
+
+# =============================================================================
+# ESTADO EFÊMERO / RUNTIME
+# =============================================================================
+todos/
+shell-snapshots/
+statsig/
+daemon/
+ide/
+logs/
+*.log
+*.tmp
+*.tmp.*
+tmp/
+__pycache__/
+*.pyc
+.swarm/
+.claude-flow/
+node_modules/
+.DS_Store
