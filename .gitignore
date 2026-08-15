@@ -1,47 +1,41 @@
 # =============================================================================
-# SEGREDOS E CREDENCIAIS — NUNCA COMMITAR
+# WHITELIST — ignora TUDO por padrão, versiona só a config curada.
+# Garante que credenciais (.credentials.json), transcripts de sessão
+# (projects/**/*.jsonl), memória pessoal (memory/), settings locais, keys,
+# history.jsonl e arquivos-lixo de shell NUNCA sejam commitados, mesmo com
+# `git add -A`. Escopo escolhido: skills, agents, commands + CLAUDE.md.
+# =============================================================================
+
+# 1) ignora tudo na raiz
+/*
+
+# 2) libera só os itens curados da raiz
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/.agents/
+!/.claude/
+
+# 3) dentro de .agents/, só skills/
+/.agents/*
+!/.agents/skills/
+
+# 4) dentro de .claude/, só agents/, commands/ e skills/
+/.claude/*
+!/.claude/agents/
+!/.claude/commands/
+!/.claude/skills/
+
+# =============================================================================
+# Defesa extra (belt-and-suspenders) — mesmo que o escopo mude no futuro,
+# estes NUNCA entram:
 # =============================================================================
 .credentials.json
 .credentials.json.*
 .claude.json
-.claude.json.*
 *.key
-**/*.key
 *.pem
 .env
 .env.*
-!.env.example
-
-# Settings locais (podem conter segredos/env/tokens de MCP)
 settings.local.json
-.vscode/
-
-# =============================================================================
-# HISTÓRICO DE CONVERSAS — privado, não versionar
-# =============================================================================
-# transcripts de sessão inteiros (JSONL) e dumps de resultado de ferramentas
-projects/**/*.jsonl
-projects/**/tool-results/
-projects/**/*.output
-projects/**/*.tmp
-projects/**/scratchpad/
-
-# =============================================================================
-# ESTADO EFÊMERO / RUNTIME
-# =============================================================================
-todos/
-shell-snapshots/
-statsig/
-daemon/
-ide/
-logs/
-*.log
-*.tmp
-*.tmp.*
-tmp/
-__pycache__/
-*.pyc
-.swarm/
-.claude-flow/
-node_modules/
-.DS_Store
+**/*.jsonl
