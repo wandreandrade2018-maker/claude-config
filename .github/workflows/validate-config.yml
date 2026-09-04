@@ -1,0 +1,93 @@
+# Validates the Claude Code configuration in this repo. The check is
+# inlined here (rather than a repo-tracked script) because .gitignore
+# deliberately whitelists only .agents/skills, .claude/{agents,commands,skills},
+# CLAUDE.md and README.md — see the comment at the top of .gitignore.
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate JSON, YAML and SKILL.md frontmatter
+        run: |
+          python3 - <<'PYEOF'
+          import json, pathlib, sys
+          import yaml
+
+          ROOT = pathlib.Path(".")
+          IGNORE_DIRS = {".git", "node_modules"}
+
+          def iter_files(pattern):
+              for path in ROOT.rglob(pattern):
+                  if any(part in IGNORE_DIRS for part in path.parts):
+                      continue
+                  yield path
+
+          errors = []
+          n_json = n_yaml = n_skill = 0
+
+          for path in iter_files("*.json"):
+              n_json += 1
+              try:
+                  json.loads(path.read_text(encoding="utf-8"))
+              except (json.JSONDecodeError, UnicodeDecodeError) as e:
+                  errors.append(f"[json] {path}: {e}")
+
+          for pattern in ("*.yaml", "*.yml"):
+              for path in iter_files(pattern):
+                  n_yaml += 1
+                  try:
+                      list(yaml.safe_load_all(path.read_text(encoding="utf-8")))
+                  except yaml.YAMLError as e:
+                      errors.append(f"[yaml] {path}: {e}")
+
+          for path in iter_files("SKILL.md"):
+              n_skill += 1
+              text = path.read_text(encoding="utf-8")
+              if not text.startswith("---"):
+                  errors.append(f"[skill] {path}: missing YAML frontmatter (must start with '---')")
+                  continue
+              end = text.find("\n---", 3)
+              if end == -1:
+                  errors.append(f"[skill] {path}: frontmatter block is never closed with '---'")
+                  continue
+              try:
+                  frontmatter = yaml.safe_load(text[3:end]) or {}
+              except yaml.YAMLError as e:
+                  errors.append(f"[skill] {path}: frontmatter is not valid YAML: {e}")
+                  continue
+              for field in ("name", "description"):
+                  if not str(frontmatter.get(field, "")).strip():
+                      errors.append(f"[skill] {path}: frontmatter is missing a non-empty '{field}'")
+
+          print(f"Checked {n_json} JSON file(s), {n_yaml} YAML file(s), {n_skill} SKILL.md file(s).")
+
+          if errors:
+              print(f"\n{len(errors)} problem(s) found:\n")
+              for e in errors:
+                  print(f"  - {e}")
+              sys.exit(1)
+
+          print("All configuration files are valid.")
+          PYEOF
