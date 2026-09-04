@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/arquitetura/visao-geral/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/arquitetura/visao-geral/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/cicd/badges/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/cicd/badges/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/cicd/pipeline/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/cicd/pipeline/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/configuracao/config_yaml/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/configuracao/config_yaml/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/configuracao/okx_setup/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/configuracao/okx_setup/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/modulos/config_loader/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/modulos/config_loader/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/modulos/logging_config/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/modulos/logging_config/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/modulos/okx_client/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/modulos/okx_client/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/modulos/trading_reporter/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/modulos/trading_reporter/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/modulos/trading_utils/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/modulos/trading_utils/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/uso/agendamento/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/uso/agendamento/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/uso/knowledge/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/uso/knowledge/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
-         <loc>https://github.com/seu-usuario/jarvisos-trading/uso/scripts/</loc>
+         <loc>https://wandreandrade2018-maker.github.io/claude-config/uso/scripts/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
 </urlset>
