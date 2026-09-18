@@ -1,8 +1,10 @@
 # Claude Code — config versionada
 
-Versionamento **local** da configuração do Claude Code do Dre: skills, agents,
+Versionamento da configuração do Claude Code do Dre: skills, agents,
 commands e o `CLAUDE.md` global. Serve de backup e histórico de mudanças da
-config — **sem remote por escolha** (ver segurança abaixo).
+config, e o branch `gh-pages` publica um site de documentação (ver seção
+abaixo). O repositório é **público** — a whitelist do `.gitignore` (ver
+Segurança) é o que garante que nada pessoal ou sensível vá junto.
 
 ## O que está versionado
 
@@ -28,12 +30,14 @@ curados acima. Mesmo um `git add -A` distraído não commita:
 Defesa em duas camadas: a whitelist + regras explícitas de negação para os
 segredos conhecidos (belt-and-suspenders).
 
-## Por que só local
+## O que continua só na máquina
 
 O `CLAUDE.md` e os SKILL.md descrevem o setup pessoal (paths, contas demo,
-algoIds, rotinas) — não são segredos, mas são pessoais. Ficam versionados na
-máquina com histórico; se um dia for publicar, criar um repo **privado** e
-`git remote add` — a whitelist já protege o resto.
+algoIds, rotinas) — não são segredos, mas são pessoais, e são a única parte
+curada que vai para o repositório público. Tudo o que é de fato sensível
+(`.credentials.json`, transcripts, `memory/`, `settings.local.json`, chaves)
+nunca sai da máquina — é a whitelist do `.gitignore` (ver Segurança acima)
+que garante isso, não a visibilidade do repositório.
 
 ## Uso
 
