@@ -9,6 +9,33 @@ Windows 11 + PowerShell. Getting the shell wrong is the #1 source of friction.
 - `gh` is **NOT installed** — never use it; use `git` + the API instead.
 - **No C compiler** (no gcc) — avoid deps that build wheels from source.
 
+## Code Blocks: Only What He Should Run
+
+He copies fenced blocks straight into PowerShell. On 2026-09-22 a block quoting
+a broken `SendMessage({to: ...})` line — cited to *explain* a defect, never to be
+run — went into his console and produced a cascade of "não é reconhecido", one
+error per word. Nothing broke, but nothing needed to happen either.
+
+So:
+
+- **A fenced block is a promise that it is runnable.** Put a command there only
+  when you mean for him to run it, and tag the language: ` ```powershell `,
+  ` ```bash `. Never mix runnable lines with explanatory ones inside it.
+- **Anything you are only quoting** — a line from a source file, a defect you are
+  pointing at, the name of a Claude tool — goes in `inline backticks` or a
+  blockquote, never in a fenced block. If it needs context, give the path and
+  line number instead of pasting the block.
+- **Claude tool calls are not shell commands.** `SendMessage`, `Agent`, `Task`,
+  `Read` and the `mcp__*` tools exist only inside Claude. They will never run in
+  PowerShell and must never be presented as if they could.
+- Output you are showing him (test results, a CI log, a diff) is fine in a block
+  — it is obviously not a command. Say so if it is ambiguous.
+
+Note that the `Agent(...)`/`SendMessage(...)` block under **Agent Comms** below
+breaks this rule: it is tagged `javascript` but its contents are Claude tool
+calls, runnable nowhere. It stays because it documents a real pattern — treat it
+as the example of what NOT to hand him in a console.
+
 ## Interpreters & Project Roots
 
 Claude launches from `C:\Users\dre_l\.claude`, so always use **absolute paths** for project files.
