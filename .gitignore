@@ -10,7 +10,9 @@
 /*
 
 # 2) libera só os itens curados da raiz
+# (inclui .gitmodules: sem ele, submodules viram gitlinks quebrados)
 !/.gitignore
+!/.gitmodules
 !/README.md
 !/CLAUDE.md
 !/.agents/
