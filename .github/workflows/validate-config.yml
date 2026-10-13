@@ -91,3 +91,24 @@ jobs:
 
           print("All configuration files are valid.")
           PYEOF
+
+      - name: Guard against committed submodules
+        run: |
+          gitlinks="$(git ls-files -s | grep '^160000' || true)"
+          if [ -n "$gitlinks" ]; then
+            echo "ERROR: submodule (gitlink) entries are not allowed in this repo."
+            echo "Absorb the files as regular paths instead (see the .gitmodules comment in .gitignore):"
+            echo "$gitlinks"
+            exit 1
+          fi
+          echo "No submodule entries found."
+
+      - name: Guard against committed secrets
+        run: |
+          offenders="$(git ls-files | grep -Ei '(^|/)\.(env|credentials\.json|claude\.json)$|(^|/)\.env\.|(^|/)settings\.local\.json$|\.(key|pem|jsonl)$|^memory/' || true)"
+          if [ -n "$offenders" ]; then
+            echo "ERROR: files matching secret/personal patterns are tracked:"
+            echo "$offenders"
+            exit 1
+          fi
+          echo "No secrets tracked."
