@@ -28,6 +28,14 @@
 !/.claude/commands/
 !/.claude/skills/
 
+# 5) workflows do GitHub: só os dois oficiais (ci.yml do JarvisOS e
+#    qualquer outro workflow futuro continuam ignorados e exigem `git add -f`)
+!/.github/
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/validate-config.yml
+!/.github/workflows/deploy-pages.yml
+
 # =============================================================================
 # Defesa extra (belt-and-suspenders) — mesmo que o escopo mude no futuro,
 # estes NUNCA entram:
