@@ -22,11 +22,12 @@
 /.agents/*
 !/.agents/skills/
 
-# 4) dentro de .claude/, só agents/, commands/ e skills/
+# 4) dentro de .claude/, só agents/, commands/, skills/ e scripts/
 /.claude/*
 !/.claude/agents/
 !/.claude/commands/
 !/.claude/skills/
+!/.claude/scripts/
 
 # 5) workflows do GitHub: só os dois oficiais (ci.yml do JarvisOS e
 #    qualquer outro workflow futuro continuam ignorados e exigem `git add -f`)

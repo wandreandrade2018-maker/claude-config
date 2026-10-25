@@ -19,7 +19,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -29,6 +29,19 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Ensure gh-pages branch exists
+        run: |
+          git fetch origin gh-pages || true
+          if ! git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+            echo "Branch gh-pages not found; creating empty branch."
+            git checkout --orphan gh-pages
+            git rm -rf . || true
+            echo "# Claude Config Site" > index.html
+            git add index.html
+            git commit -m "chore: initialize gh-pages branch"
+            git push origin gh-pages
+          fi
+
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
